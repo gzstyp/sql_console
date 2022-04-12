@@ -74,6 +74,26 @@ from numbers;
 
 select val,ntile(4) over (order by val) from numbers;
 
+DROP TABLE IF EXISTS `t_dept`;
+
+CREATE TABLE `t_dept`  (
+  `id` int(10) NOT NULL,
+  `pid` int(10) NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `t_dept` VALUES (0, NULL, '1');
+INSERT INTO `t_dept` VALUES (1, 0, '11');
+INSERT INTO `t_dept` VALUES (2, 0, '12');
+INSERT INTO `t_dept` VALUES (3, 1, '111');
+INSERT INTO `t_dept` VALUES (4, 1, '112');
+INSERT INTO `t_dept` VALUES (5, 2, '121');
+INSERT INTO `t_dept` VALUES (6, 4, '1121');
+INSERT INTO `t_dept` VALUES (7, 4, '1122');
+INSERT INTO `t_dept` VALUES (8, 4, '1123');
+INSERT INTO `t_dept` VALUES (9, 5, '1211');
+
 # 1.递归，查询本级以及所有下级
 WITH RECURSIVE temp as (
     SELECT t.* FROM t_dept t WHERE id = 0
