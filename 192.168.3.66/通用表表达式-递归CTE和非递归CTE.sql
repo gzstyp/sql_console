@@ -125,3 +125,11 @@ WITH RECURSIVE temp as (
     SELECT t.* FROM t_dept t INNER JOIN temp ON t.id = temp.pid
 )
 SELECT * FROM temp  WHERE id != 8;-- 排除本级
+
+
+-- 查询祖链路径
+SELECT * FROM dept WHERE lft < 35 AND rgt > 36 ORDER BY lft ASC;
+-- 查出所有子孙部门
+SELECT * FROM dept WHERE lft > 41 AND lft <= 64 ORDER BY lft ASC;
+
+
